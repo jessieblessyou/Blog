@@ -1,0 +1,52 @@
+{%extends 'layout.html'%}
+
+
+{%block main%}
+
+	<div class="container">
+			<div class="col-lg-4">
+				<input type="text" class="form-control " placeholder="分类名称" id="category_name">
+			</div>
+			<button class="btn btn-default" id="category_submit">添加分类</button>
+			<span id="categoryInfo" style="color:red"></span>
+	</div>	
+	<br>
+	<div class="container">
+		 <table class="table table-bordered">
+		 	<tr>
+		 		<th>id</th>
+		 		<th>name</th>
+		 		<th>operation</th>
+		 	</tr>
+		 	{% for name in categoryName%}
+	 		<tr>
+	 			<td>{{name._id.toString()}}</td>
+	 			<td>{{name.name}}</td>
+	 			<td><a href="#" data-toggle="modal" data-target="#myModal">修改</a>|<a href="/admin/category_delete?id={{name._id.toString()}}">删除</a></td>
+	 		</tr>
+		 	{%endfor%}
+		 </table>
+	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">修改分类名称</h4>
+	      </div>
+	      <div class="modal-body">
+	          <div class="form-group">
+			    <label for="category_newName">新名称</label>
+			    <input type="email" class="form-control" id="category_newName" placeholder="Email">
+			  </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" id="category_modify">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+{%endblock%}
